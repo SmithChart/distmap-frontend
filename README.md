@@ -1,4 +1,19 @@
 # HackathonPrime
+Welcome to the distmap backend repository.
+
+Distmap is a tool to visualize travel time from one location
+to a whole area using a heatmap.
+
+Distmap was created by the distmap working group during the
+"Smart City Braunschweig" Hackathon 2018.
+
+## What you need
+
+This project consists of three parts:
+
+* backend https://github.com/SmithChart/distmap
+* frontend (this repository)
+* documentation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
