@@ -1,20 +1,71 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="/">Dist-Map</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a>
+      <a class="nav-item nav-link" href="#">About</a>
+    </div>
+  </div>
+</nav>
 
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <form>
+          <label for="timeslider">Maximum Travel Time in Minutes: {{travelTime}}</label>
+          <p-slider name="timeslider" id="timeslider" [(ngModel)]="travelTime" [min]="20" [max]="60"></p-slider>
+
+          <div class="ui-g" style="width:250px;margin-bottom:10px">
+            <div class="ui-g-12">
+              <p-checkbox name="polygonbox" value="Use Polygons" [(ngModel)]="usePolygons" binary="true" label="Draw Polygons"></p-checkbox>
+            </div>
+          </div>
+
+          <div class="ui-g" style="width:250px;margin-bottom:10px">
+            <div class="ui-g-12">
+              <span class="pi pi-car"></span>
+              <p-radioButton name="vehiclegroups" value="Foot" label="Feet" [(ngModel)]="travelType" inputId="preopt1">
+              </p-radioButton></div>
+            <div class="ui-g-12"><p-radioButton name="vehiclegroups" value="Car" label="Car" [(ngModel)]="travelType" inputId="preopt2"></p-radioButton></div>
+          </div>
+
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dist Map</h1>
+      </div>
+      <p-gmap #gmap [options]="options" [overlays]="overlays" (onMapClick)="handleMapClick($event, gmap.getMap())" [style]="{'width':'900','height':'700px'}" ></p-gmap>
+    </main>
+  </div>
+</div>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+  <div class="row">
+    <div class="col-12 col-md">
+      <img class="mb-2" src="../../assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+      <small class="d-block mb-3 text-muted">&copy; 2018</small>
+    </div>
+    <div class="col-6 col-md">
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Team</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
