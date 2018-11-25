@@ -15,6 +15,7 @@ import {PanelModule} from 'primeng/panel';
 import {SliderModule} from 'primeng/slider';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SliderModule,
     FormsModule,
     RadioButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    ButtonModule
   ],
   providers: [DistanceService],
   bootstrap: [AppComponent]

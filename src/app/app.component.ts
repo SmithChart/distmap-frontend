@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   marker: any;
 
   travelTime = 20;
-  travelType = 'Car';
+  travelType = 'Foot';
 
   latitude = 0;
   longitude = 0;
@@ -52,6 +52,41 @@ export class AppComponent implements OnInit, AfterViewInit {
      */
   }
 
+  resetMap () {
+    this.overlays = [];
+  }
+
+  dummyRequest (map) {
+    this.latitude = 52.265474119942986;
+    this.longitude = 10.51102904262541;
+
+    if (this.marker) {
+      this.marker.setMap(null);
+    }
+
+    const myLatLng = {lat: this.latitude, lng: this.longitude};
+    this.marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Center Point'
+    });
+
+
+    console.log('Querying long: ' + this.longitude + ' lat: ' + this.latitude)
+
+    this.distanceService.getDummyDistances(this.longitude, this.latitude).subscribe(res => {
+      this.distanceMap = res;
+
+      if (this.usePolygons) {
+        this.createHeatMapPolygons(map);
+      } else {
+        this.createHeatMapCircles(map);
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
+
   createHeatMapPolygons (map) {
     if (!this.distanceMap) {
       return;
@@ -76,7 +111,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
     console.log(min + ' ' + max);
     */
-    /*
+/*
     const heatmapData = [];
     this.distanceMap.pixlist.forEach( item => {
       // const scaled = ( item.t - min ) / (max - min);
@@ -84,7 +119,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       const scaled = item.t;
 
-      heatmapData.push({location: new google.maps.LatLng(item.lat, item.lon), weight: scaled});
+      heatmapData.push({location: new google.maps.LatLng(item.lat, item.lon), weight: 1});
     });
 
 
@@ -95,7 +130,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // this.heatmap.set('radius', 20);
 
     this.heatmap.setMap(map);
- */
+*/
     // try polygon
     /*
     this.overlays = [];
@@ -111,8 +146,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 */
 
-    this.latitude = 52.26492092361997;
-    this.longitude = 10.50678578796385;
+    // this.latitude = 52.26492092361997;
+    // this.longitude = 10.50678578796385;
 
     // group green: 0-999
     // group yellow: 1000-1800
@@ -152,21 +187,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     const greenPolygon = {
       paths: sortedGreenPoints,
       strokeOpacity: 0.5,
-      strokeWeight: 1,
+      strokeWeight: 0,
       fillColor: '#35d220',
       fillOpacity: 0.6
     };
     const yellowPolygon = {
       paths: [sortedYellowPoints, sortedGreenPoints],
       strokeOpacity: 0.5,
-      strokeWeight: 1,
+      strokeWeight: 0,
       fillColor: '#d2d238',
       fillOpacity: 0.4
     };
     const redPolygon = {
       paths: [sortedRedPoints, sortedYellowPoints],
       strokeOpacity: 0.5,
-      strokeWeight: 1,
+      strokeWeight: 0,
       fillColor: '#d2211b',
       fillOpacity: 0.2
     };
@@ -185,8 +220,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.heatmap.setMap(null);
     }
 
-    this.latitude = 52.26492092361997;
-    this.longitude = 10.50678578796385;
+    // this.latitude = 52.26492092361997;
+    // this.longitude = 10.50678578796385;
 
     // group green: 0-999
     // group yellow: 1000-1800

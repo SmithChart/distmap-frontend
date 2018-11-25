@@ -1,5 +1,7 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">DistMap</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+    <img height="40" src="../assets/logo_distmap.png">
+    </a>
 </nav>
 
 
@@ -13,7 +15,7 @@
           <li class="nav-item">
             <div class="ui-g" style="margin:3px">
               <div class="ui-g-12">
-                <label for="timeslider">Maximum Travel Time in Minutes: {{travelTime}}</label>
+                <label for="timeslider">Maximale Reisezeit (min): {{travelTime}}</label>
                 <p-slider name="timeslider" id="timeslider" [(ngModel)]="travelTime" [min]="20" [max]="60"></p-slider>
               </div>
             </div>
@@ -22,7 +24,7 @@
 
             <div class="ui-g" style="margin:3px">
               <div class="ui-g-12">
-                <p-checkbox name="polygonbox" value="Use Polygons" [(ngModel)]="usePolygons" binary="true" label="Draw Polygons"></p-checkbox>
+                <p-checkbox name="polygonbox" value="Use Polygons" [(ngModel)]="usePolygons" binary="true" label="Polygone"></p-checkbox>
               </div>
             </div>
 
@@ -30,25 +32,27 @@
           <li class="nav-item">
             <div class="ui-g" style="margin:3px">
               <div class="ui-g-12">
-                <i class="fa fa-walking" aria-hidden="true" style="margin-left:3px"> </i>
-                <p-radioButton name="vehiclegroups" value="Foot" label="Feet" [(ngModel)]="travelType" inputId="preopt1">
-                </p-radioButton></div>
+                <p-radioButton name="vehiclegroups" value="Foot" label="Fußgänger" [(ngModel)]="travelType" inputId="preopt1">
+                </p-radioButton>
+                <i class="fa fa-blind" style="margin-left:10px"> </i>
+              </div>
               <div class="ui-g-12">
-                <i class="fa fa-car" aria-hidden="true" style="margin-left:3px"> </i>
-                <p-radioButton name="vehiclegroups" value="Car" label="Car" [(ngModel)]="travelType" inputId="preopt2"></p-radioButton></div>
+                <p-radioButton name="vehiclegroups" value="Car" label="PKW" [(ngModel)]="travelType" inputId="preopt2"></p-radioButton>
+                <i class="fa fa-car" aria-hidden="true" style="margin-left:10px"> </i>
+              </div>
             </div>
           </li>
         </ul>
-
         </form>
+        <p-button style="margin-left:5px" label="Karte zurücksetzen" (click)="resetMap()"></p-button>
+        <br />
+        <br />
+        <p-button style="margin-left:5px" label="Beispielrequest" (click)="dummyRequest(gmap.getMap())"></p-button>
       </div>
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Karte</h1>
-        <img src="../assets/logo_distmap.png">
-      </div>
+      <br />
       <p-gmap #gmap [options]="options" [overlays]="overlays" (onMapClick)="handleMapClick($event, gmap.getMap())" [style]="{'width':'900','height':'700px'}" ></p-gmap>
     </main>
   </div>
