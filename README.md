@@ -7,6 +7,9 @@ to a whole area using a heatmap.
 Distmap was created by the distmap working group during the
 "Smart City Braunschweig" Hackathon 2018.
 
+Be warned: This is a only a mockup and does not contain 
+much useful things.
+
 ## What you need
 
 This project consists of three parts:
